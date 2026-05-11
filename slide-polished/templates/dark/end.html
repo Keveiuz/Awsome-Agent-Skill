@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Thank You</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    .closing-content {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      flex: 1; gap: 4vh;
+    }
+    /* 渐变文字大标题（暗色版专用） */
+    .thanks-text {
+      font-size: clamp(48px, 6vw, 96px);
+      font-weight: 900; text-align: center;
+      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .end-sub {
+      font-size: clamp(14px, 1.5vw, 28px);
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.08em;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide">
+    <div class="content">
+      <div class="closing-content">
+        <div class="thanks-text animate-scale delay-1">Thank You</div>
+        <div class="neon-divider animate-fade delay-2" style="width:30vw;"></div>
+        <div class="end-sub animate-fade delay-3">Q &amp; A · 欢迎交流讨论</div>
+      </div>
+    </div>
+    <div class="page-indicator">N / N</div>
+  </div>
+</body>
+</html>
