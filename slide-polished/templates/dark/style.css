@@ -1,0 +1,153 @@
+/* ====================================================
+   Dark Neon 幻灯片设计系统（暗色科技霓虹风）
+   与 Light-Tech 配套，形成 Light + Dark 双主题
+   ==================================================== */
+
+:root {
+  /* ── 背景 ── */
+  --bg:      #000000;
+  --bg-card: rgba(10, 15, 30, 0.85);
+  --bg-card2:rgba(5, 10, 25, 0.9);
+
+  /* ── 霓虹色（比亮色版更饱和，带发光） ── */
+  --neon-cyan:   #00d4ff;
+  --neon-blue:   #4f8fff;
+  --neon-purple: #7c3aed;
+  --neon-red:    #ff6b6b;
+  --neon-gold:   #ffd700;
+  --neon-green:  #00ff88;
+  --neon-orange: #ff8c42;
+  --neon-pink:   #ff2d9b;
+
+  /* ── 发光 box-shadow ── */
+  --glow-cyan:   0 0 12px rgba(0,212,255,0.5),  0 0 24px rgba(0,212,255,0.25);
+  --glow-purple: 0 0 12px rgba(124,58,237,0.5), 0 0 24px rgba(124,58,237,0.25);
+  --glow-red:    0 0 12px rgba(255,107,107,0.5),0 0 24px rgba(255,107,107,0.25);
+  --glow-gold:   0 0 12px rgba(255,215,0,0.5),  0 0 24px rgba(255,215,0,0.25);
+  --glow-green:  0 0 12px rgba(0,255,136,0.5),  0 0 24px rgba(0,255,136,0.25);
+  --glow-pink:   0 0 12px rgba(255,45,155,0.5), 0 0 24px rgba(255,45,155,0.25);
+  --glow-blue:   0 0 12px rgba(79,143,255,0.5), 0 0 24px rgba(79,143,255,0.25);
+  --glow-orange: 0 0 12px rgba(255,140,66,0.5), 0 0 24px rgba(255,140,66,0.25);
+
+  /* ── 文字 ── */
+  --white:    #ffffff;
+  --gray:     rgba(255,255,255,0.6);
+  --gray-dim: rgba(255,255,255,0.3);
+}
+
+/* text-shadow 发光工具类（暗色版特有，亮色版不需要） */
+.text-cyan   { color: var(--neon-cyan);   text-shadow: 0 0 10px rgba(0,212,255,0.6); }
+.text-purple { color: var(--neon-purple); text-shadow: 0 0 10px rgba(124,58,237,0.6); }
+.text-red    { color: var(--neon-red);    text-shadow: 0 0 10px rgba(255,107,107,0.6); }
+.text-gold   { color: var(--neon-gold);   text-shadow: 0 0 10px rgba(255,215,0,0.6); }
+.text-green  { color: var(--neon-green);  text-shadow: 0 0 10px rgba(0,255,136,0.6); }
+.text-orange { color: var(--neon-orange); text-shadow: 0 0 10px rgba(255,140,66,0.6); }
+.text-blue   { color: var(--neon-blue);   text-shadow: 0 0 10px rgba(79,143,255,0.6); }
+.text-pink   { color: var(--neon-pink);   text-shadow: 0 0 10px rgba(255,45,155,0.6); }
+
+/* 暗色版 .slide 背景覆盖 */
+.slide {
+  background: var(--bg);
+  color: var(--white);
+}
+
+/* 背景细节：极细青色网格增强科技感 */
+.slide::before {
+  background-image:
+    linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* 暗色版标题 */
+.slide-title { color: var(--white); }
+.slide-title .accent {
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px rgba(0,212,255,0.5);
+}
+
+/* 暗色版卡片（有内嵌高光边） */
+.neon-card {
+  background: var(--bg-card);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+}
+.neon-card.cyan   { border-color: rgba(0,212,255,0.5);   box-shadow: var(--glow-cyan),   inset 0 1px 0 rgba(255,255,255,0.05); }
+.neon-card.purple { border-color: rgba(124,58,237,0.5);  box-shadow: var(--glow-purple), inset 0 1px 0 rgba(255,255,255,0.05); }
+.neon-card.red    { border-color: rgba(255,107,107,0.5); box-shadow: var(--glow-red),    inset 0 1px 0 rgba(255,255,255,0.05); }
+.neon-card.gold   { border-color: rgba(255,215,0,0.5);   box-shadow: var(--glow-gold),   inset 0 1px 0 rgba(255,255,255,0.05); }
+.neon-card.green  { border-color: rgba(0,255,136,0.5);   box-shadow: var(--glow-green),  inset 0 1px 0 rgba(255,255,255,0.05); }
+.neon-card.blue   { border-color: rgba(79,143,255,0.5);  box-shadow: var(--glow-blue),   inset 0 1px 0 rgba(255,255,255,0.05); }
+.neon-card.orange { border-color: rgba(255,140,66,0.5);  box-shadow: var(--glow-orange), inset 0 1px 0 rgba(255,255,255,0.05); }
+.neon-card.pink   { border-color: rgba(255,45,155,0.5);  box-shadow: var(--glow-pink),   inset 0 1px 0 rgba(255,255,255,0.05); }
+
+/* card-body 文字颜色（暗色版稍亮） */
+.card-body { color: rgba(255,255,255,0.85); }
+
+/* 暗色版表格 */
+.neon-table th {
+  background: rgba(0,212,255,0.15);
+  border-bottom: 1px solid rgba(0,212,255,0.4);
+}
+.neon-table td {
+  color: rgba(255,255,255,0.85);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.neon-table tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+.neon-table tr:hover td { background: rgba(0,212,255,0.05); }
+
+/* 暗色版进度条 */
+.progress-track { background: rgba(255,255,255,0.08); }
+.progress-fill {
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+  box-shadow: var(--glow-cyan);
+}
+
+/* 暗色版 quote-block */
+.quote-block {
+  background: rgba(0,212,255,0.04);
+  border-color: rgba(0,212,255,0.2);
+  border-left-color: var(--neon-cyan);
+  color: rgba(255,255,255,0.9);
+}
+
+/* 暗色版 neon-list */
+.neon-list li { color: rgba(255,255,255,0.85); }
+
+/* 暗色版代码块 */
+.code-block {
+  background: rgba(0,0,0,0.7);
+  border-color: rgba(0,212,255,0.2);
+  color: rgba(255,255,255,0.85);
+}
+
+/* 暗色版 section-eyebrow */
+.section-eyebrow {
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px rgba(0,212,255,0.4);
+}
+
+/* ── 暗色专属：金字塔/层级布局 ── */
+.pyramid-row { background: var(--bg-card); }
+.pyramid-row.l1 { border-color: var(--neon-cyan);   } .pyramid-row.l1 .layer-num { color: var(--neon-cyan); }
+.pyramid-row.l2 { border-color: var(--neon-blue);   } .pyramid-row.l2 .layer-num { color: var(--neon-blue); }
+.pyramid-row.l3 { border-color: var(--neon-green);  } .pyramid-row.l3 .layer-num { color: var(--neon-green); }
+.pyramid-row.l4 { border-color: var(--neon-gold);   } .pyramid-row.l4 .layer-num { color: var(--neon-gold); }
+.pyramid-row.l5 { border-color: var(--neon-orange); } .pyramid-row.l5 .layer-num { color: var(--neon-orange); }
+.pyramid-row.l6 { border-color: var(--neon-purple); } .pyramid-row.l6 .layer-num { color: var(--neon-purple); }
+
+/* ── 暗色专属：Thank You 渐变文字 ── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── 内联强调简写（暗色版加 text-shadow） ── */
+em.cy { font-style:normal; color:var(--neon-cyan);   text-shadow:0 0 8px rgba(0,212,255,0.5);   font-weight:600; }
+em.pu { font-style:normal; color:var(--neon-purple); text-shadow:0 0 8px rgba(124,58,237,0.5);  font-weight:600; }
+em.go { font-style:normal; color:var(--neon-gold);   text-shadow:0 0 8px rgba(255,215,0,0.5);   font-weight:600; }
+em.gr { font-style:normal; color:var(--neon-green);  text-shadow:0 0 8px rgba(0,255,136,0.5);   font-weight:600; }
+em.re { font-style:normal; color:var(--neon-red);    text-shadow:0 0 8px rgba(255,107,107,0.5); font-weight:600; }
+em.or { font-style:normal; color:var(--neon-orange); text-shadow:0 0 8px rgba(255,140,66,0.5);  font-weight:600; }
+em.pk { font-style:normal; color:var(--neon-pink);   text-shadow:0 0 8px rgba(255,45,155,0.5);  font-weight:600; }
