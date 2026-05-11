@@ -1,0 +1,258 @@
+/* ====================================================
+   Light-Tech 幻灯片设计系统  —  经验证最终版
+   ==================================================== */
+
+:root {
+  --bg:        #f0f4f8;
+  --bg-card:   #ffffff;
+  --bg-card2:  #f1f5f9;
+
+  --neon-cyan:   #0284c7;
+  --neon-blue:   #2563eb;
+  --neon-purple: #7c3aed;
+  --neon-red:    #dc2626;
+  --neon-gold:   #d97706;
+  --neon-green:  #059669;
+  --neon-orange: #ea580c;
+  --neon-pink:   #db2777;
+
+  --glow-cyan:   0 2px 8px rgba(2,132,199,0.18);
+  --glow-purple: 0 2px 8px rgba(124,58,237,0.18);
+  --glow-red:    0 2px 8px rgba(220,38,38,0.18);
+  --glow-gold:   0 2px 8px rgba(217,119,6,0.18);
+  --glow-green:  0 2px 8px rgba(5,150,105,0.18);
+  --glow-pink:   0 2px 8px rgba(219,39,119,0.18);
+  --glow-blue:   0 2px 8px rgba(37,99,235,0.18);
+  --glow-orange: 0 2px 8px rgba(234,88,12,0.18);
+
+  --white:    #1e293b;   /* 主文字（深墨） */
+  --gray:     #475569;
+  --gray-dim: #94a3b8;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 100%; height: 100%; overflow: hidden;
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--white);
+}
+
+/* ── 幻灯片容器 ── */
+.slide {
+  width: 100vw; height: 100vh;
+  overflow: hidden; position: relative;
+  background: var(--bg);
+  display: flex; flex-direction: column;
+  padding: 3.5vh 4.5vw;
+}
+
+/* 极细网格底纹 */
+.slide::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(15,40,80,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15,40,80,0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none; z-index: 0;
+}
+.slide > * { position: relative; z-index: 1; }
+
+/* ── 标题系统 ── */
+.slide-header {
+  margin-bottom: 2.5vh;
+  border-left: 3px solid var(--neon-cyan);
+  padding-left: 1.2vw;
+}
+.slide-title {
+  font-size: clamp(30px, 3.4vw, 76px);
+  font-weight: 700; color: var(--white);
+  letter-spacing: 0.02em; line-height: 1.2;
+}
+.slide-title .accent { color: var(--neon-cyan); }
+.slide-subtitle {
+  font-size: clamp(16px, 1.6vw, 32px);
+  color: var(--gray); margin-top: 0.4vh;
+  font-weight: 400; letter-spacing: 0.03em;
+}
+
+/* ── 内容区 ── */
+.content {
+  flex: 1; display: flex; flex-direction: column;
+  justify-content: center; overflow: hidden; gap: 1.5vh;
+}
+
+/* ── 卡片 ── */
+.neon-card {
+  background: var(--bg-card); border-radius: 8px;
+  padding: 1.8vh 2vw;
+  border: 1px solid rgba(2,132,199,0.2);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.neon-card.cyan   { border-color: rgba(2,132,199,0.35);  box-shadow: var(--glow-cyan); }
+.neon-card.purple { border-color: rgba(124,58,237,0.35); box-shadow: var(--glow-purple); }
+.neon-card.red    { border-color: rgba(220,38,38,0.35);  box-shadow: var(--glow-red); }
+.neon-card.gold   { border-color: rgba(217,119,6,0.35);  box-shadow: var(--glow-gold); }
+.neon-card.green  { border-color: rgba(5,150,105,0.35);  box-shadow: var(--glow-green); }
+.neon-card.blue   { border-color: rgba(37,99,235,0.35);  box-shadow: var(--glow-blue); }
+.neon-card.orange { border-color: rgba(234,88,12,0.35);  box-shadow: var(--glow-orange); }
+
+.card-title {
+  font-size: clamp(13px, 1.4vw, 24px);
+  font-weight: 600; color: var(--neon-cyan);
+  margin-bottom: 0.8vh; display: flex; align-items: center; gap: 0.5vw;
+}
+.card-title.purple { color: var(--neon-purple); }
+.card-title.red    { color: var(--neon-red); }
+.card-title.gold   { color: var(--neon-gold); }
+.card-title.green  { color: var(--neon-green); }
+.card-title.blue   { color: var(--neon-blue); }
+.card-title.orange { color: var(--neon-orange); }
+.card-body {
+  font-size: clamp(13px, 1.25vw, 23px);
+  color: var(--gray); line-height: 1.6;
+}
+
+/* ── 网格布局 ── */
+.grid-2   { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5vw; }
+.grid-3   { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2vw; }
+.grid-4   { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1vw; }
+.grid-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 2vw; }
+.grid-1-2 { display: grid; grid-template-columns: 1fr 2fr; gap: 2vw; }
+
+/* ── 表格 ── */
+.neon-table { width: 100%; border-collapse: collapse; font-size: clamp(13px, 1.2vw, 22px); }
+.neon-table th {
+  background: rgba(2,132,199,0.08); color: var(--neon-cyan);
+  padding: 0.8vh 1vw; text-align: left; font-weight: 600;
+  border-bottom: 2px solid rgba(2,132,199,0.25);
+}
+.neon-table td {
+  padding: 0.7vh 1vw; border-bottom: 1px solid rgba(0,0,0,0.06);
+  color: var(--white); vertical-align: middle;
+}
+.neon-table tr:nth-child(even) td { background: rgba(0,0,0,0.02); }
+.neon-table tr:hover td { background: rgba(2,132,199,0.04); }
+
+/* ── 标签/徽章 ── */
+.badge {
+  display: inline-block; padding: 3px 12px; border-radius: 20px;
+  font-size: clamp(11px, 0.9vw, 16px); font-weight: 600; border: 1.5px solid;
+}
+.badge.cyan   { color: var(--neon-cyan);   border-color: rgba(2,132,199,0.4);  background: rgba(2,132,199,0.07); }
+.badge.purple { color: var(--neon-purple); border-color: rgba(124,58,237,0.4); background: rgba(124,58,237,0.07); }
+.badge.red    { color: var(--neon-red);    border-color: rgba(220,38,38,0.4);  background: rgba(220,38,38,0.07); }
+.badge.gold   { color: var(--neon-gold);   border-color: rgba(217,119,6,0.4);  background: rgba(217,119,6,0.07); }
+.badge.green  { color: var(--neon-green);  border-color: rgba(5,150,105,0.4);  background: rgba(5,150,105,0.07); }
+.badge.orange { color: var(--neon-orange); border-color: rgba(234,88,12,0.4);  background: rgba(234,88,12,0.07); }
+.badge.blue   { color: var(--neon-blue);   border-color: rgba(37,99,235,0.4);  background: rgba(37,99,235,0.07); }
+
+/* ── 进度条 ── */
+.progress-bar-wrap { display: flex; align-items: center; gap: 1vw; margin-bottom: 0.8vh; }
+.progress-label { font-size: clamp(12px,1vw,20px); color: var(--gray); width: 9vw; flex-shrink: 0; }
+.progress-track { flex: 1; height: 9px; background: rgba(0,0,0,0.08); border-radius: 5px; overflow: hidden; }
+.progress-fill {
+  height: 100%; border-radius: 5px;
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-blue));
+  animation: progressIn 1s ease forwards;
+}
+@keyframes progressIn { from { width: 0; } }
+.progress-value { font-size: clamp(12px,1vw,20px); color: var(--neon-cyan); font-weight: 700; width: 3.5vw; text-align: right; flex-shrink: 0; }
+
+/* ── 分隔线 ── */
+.neon-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+  opacity: 0.4; margin: 1vh 0;
+}
+
+/* ── Section eyebrow ── */
+.section-eyebrow {
+  font-size: clamp(12px, 1vw, 20px);
+  letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--neon-cyan); margin-bottom: 1.5vh;
+}
+
+/* ── 引言块 ── */
+.quote-block {
+  background: rgba(2,132,199,0.04);
+  border: 1px solid rgba(2,132,199,0.2);
+  border-left: 3px solid var(--neon-cyan);
+  border-radius: 6px; padding: 1.5vh 2vw;
+  font-size: clamp(15px, 1.6vw, 30px); line-height: 1.6; color: var(--white);
+}
+
+/* ── 数字大字 ── */
+.stat-number {
+  font-size: clamp(36px, 5vw, 96px);
+  font-weight: 800; line-height: 1; color: var(--neon-cyan);
+}
+.stat-number.gold   { color: var(--neon-gold); }
+.stat-number.purple { color: var(--neon-purple); }
+.stat-number.green  { color: var(--neon-green); }
+.stat-number.red    { color: var(--neon-red); }
+.stat-label { font-size: clamp(12px,1vw,20px); color: var(--gray); margin-top: 0.5vh; }
+
+/* ── 代码块 ── */
+.code-block {
+  background: #f8fafc; border: 1px solid rgba(2,132,199,0.2);
+  border-radius: 6px; padding: 1.2vh 1.5vw;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: clamp(11px, 1vw, 18px); color: var(--white); line-height: 1.65; overflow: hidden;
+}
+.code-block .kw  { color: var(--neon-purple); font-weight: 600; }
+.code-block .str { color: var(--neon-green); }
+.code-block .cmt { color: var(--gray-dim); font-style: italic; }
+.code-block .fn  { color: var(--neon-cyan); }
+.code-block .num { color: var(--neon-gold); }
+
+/* ── 页码 ── */
+.page-indicator {
+  position: absolute; bottom: 1.8vh; right: 2.5vw;
+  font-size: clamp(10px, 0.85vw, 13px);
+  color: var(--gray-dim); letter-spacing: 0.1em; z-index: 10;
+}
+
+/* ── 工具类 ── */
+.text-cyan   { color: var(--neon-cyan); }
+.text-purple { color: var(--neon-purple); }
+.text-red    { color: var(--neon-red); }
+.text-gold   { color: var(--neon-gold); }
+.text-green  { color: var(--neon-green); }
+.text-orange { color: var(--neon-orange); }
+.text-blue   { color: var(--neon-blue); }
+.text-gray   { color: var(--gray); }
+.text-dim    { color: var(--gray-dim); }
+.text-bold   { font-weight: 700; }
+.text-center { text-align: center; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-col    { display: flex; flex-direction: column; }
+.fill        { flex: 1; }
+.gap-1       { gap: 0.8vh; }
+.gap-2       { gap: 1.5vh; }
+.mt-1        { margin-top: 0.8vh; }
+.mt-2        { margin-top: 1.5vh; }
+
+/* ── 动画 ── */
+@keyframes fadeIn       { from { opacity: 0; }                           to { opacity: 1; } }
+@keyframes slideInLeft  { from { transform: translateX(-40px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes slideInRight { from { transform: translateX(40px);  opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes slideInUp    { from { transform: translateY(30px);  opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes scaleIn      { from { transform: scale(0.88); opacity: 0; }       to { transform: scale(1);    opacity: 1; } }
+
+.animate-fade  { animation: fadeIn       0.8s ease both; }
+.animate-left  { animation: slideInLeft  0.6s ease both; }
+.animate-right { animation: slideInRight 0.6s ease both; }
+.animate-up    { animation: slideInUp    0.6s ease both; }
+.animate-scale { animation: scaleIn      0.5s ease both; }
+
+.delay-1 { animation-delay: 0.10s; }
+.delay-2 { animation-delay: 0.20s; }
+.delay-3 { animation-delay: 0.30s; }
+.delay-4 { animation-delay: 0.40s; }
+.delay-5 { animation-delay: 0.50s; }
+.delay-6 { animation-delay: 0.60s; }
+.delay-7 { animation-delay: 0.70s; }
+.delay-8 { animation-delay: 0.80s; }
