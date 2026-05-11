@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>谢谢大家</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .end-wrap {
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; gap: 3vh; position: relative; z-index: 1;
+    }
+    .end-title {
+      font-size: clamp(64px, 9vw, 180px);
+      font-weight: 800; color: #1e293b;
+      letter-spacing: 0.08em; line-height: 1.1;
+    }
+    .end-title .accent {
+      color: var(--neon-cyan);
+      border-bottom: 5px solid var(--neon-cyan);
+      padding-bottom: 0.04em; display: inline-block;
+    }
+    .end-sub { font-size: clamp(14px,1.5vw,28px); color: #64748b; letter-spacing: 0.06em; }
+    .deco-circle { position: absolute; border-radius: 50%; pointer-events: none; z-index: 0; }
+    .deco-tl { width:clamp(140px,22vw,420px); height:clamp(140px,22vw,420px); top:-9vw; left:-9vw; background:radial-gradient(circle,rgba(2,132,199,0.14) 0%,transparent 68%); }
+    .deco-br { width:clamp(110px,18vw,340px); height:clamp(110px,18vw,340px); bottom:-5vw; right:-5vw; background:radial-gradient(circle,rgba(124,58,237,0.10) 0%,transparent 68%); }
+    .deco-tr { width:clamp(70px,10vw,180px); height:clamp(70px,10vw,180px); top:7vh; right:6vw; background:radial-gradient(circle,rgba(5,150,105,0.09) 0%,transparent 68%); }
+  </style>
+</head>
+<body>
+  <div class="slide" style="background:linear-gradient(135deg,#f0f4f8 0%,#e0f2fe 50%,#f0f4f8 100%);">
+    <div class="deco-circle deco-tl"></div>
+    <div class="deco-circle deco-br"></div>
+    <div class="deco-circle deco-tr"></div>
+
+    <div class="end-wrap">
+      <div class="section-eyebrow animate-fade delay-1">{主题} · {副标签}</div>
+      <div class="end-title animate-up delay-2">谢谢<span class="accent">大家</span></div>
+      <div class="neon-divider animate-fade delay-3" style="width:40vw;"></div>
+      <div class="end-sub animate-fade delay-4">Q &amp; A · 欢迎交流讨论</div>
+    </div>
+
+    <div class="page-indicator">N / N</div>
+  </div>
+</body>
+</html>
