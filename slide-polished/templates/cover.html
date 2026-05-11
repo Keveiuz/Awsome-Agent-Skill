@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>{标题}</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .cover-wrap {
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; gap: 2.4vh; position: relative; z-index: 1;
+    }
+    .cover-main-title {
+      font-size: clamp(36px, 4.8vw, 96px);
+      white-space: nowrap; /* 防止标题换行 */
+      font-weight: 800; color: #1e293b;
+      letter-spacing: 0.01em; line-height: 1.1;
+    }
+    .cover-main-title .underline {
+      display: inline-block;
+      border-bottom: 4px solid var(--neon-cyan);
+      padding-bottom: 0.06em; color: var(--neon-cyan);
+    }
+    .cover-sub { font-size: clamp(18px,2.1vw,42px); color: #475569; line-height: 1.55; max-width: 72vw; }
+    .cover-meta { font-size: clamp(13px,1.1vw,20px); color: var(--gray-dim); letter-spacing: 0.06em; }
+    .cover-meta strong { color: var(--neon-cyan); font-weight: 600; }
+    .badge-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6vw; margin-top: 0.3vh; }
+    /* 装饰圆圈 */
+    .deco-circle { position: absolute; border-radius: 50%; pointer-events: none; z-index: 0; }
+    .deco-tl { width:clamp(120px,20vw,380px); height:clamp(120px,20vw,380px); top:-8vw; left:-8vw; background:radial-gradient(circle,rgba(2,132,199,0.13) 0%,transparent 68%); }
+    .deco-br { width:clamp(100px,18vw,320px); height:clamp(100px,18vw,320px); bottom:-5vw; right:-5vw; background:radial-gradient(circle,rgba(124,58,237,0.10) 0%,transparent 68%); }
+    .deco-tr { width:clamp(60px,9vw,160px); height:clamp(60px,9vw,160px); top:6vh; right:5vw; background:radial-gradient(circle,rgba(5,150,105,0.09) 0%,transparent 68%); }
+  </style>
+</head>
+<body>
+  <div class="slide" style="background:linear-gradient(135deg,#f0f4f8 0%,#e0f2fe 50%,#f0f4f8 100%);">
+    <div class="deco-circle deco-tl"></div>
+    <div class="deco-circle deco-br"></div>
+    <div class="deco-circle deco-tr"></div>
+
+    <div class="cover-wrap">
+      <div class="section-eyebrow animate-fade delay-1">{主题标签} · {副标签}</div>
+      <div class="cover-main-title animate-up delay-2">
+        {主标题} — <span class="underline">{核心词}</span>
+      </div>
+      <div class="cover-sub animate-up delay-3">
+        {副标题第一行}<br>
+        <span class="text-cyan" style="font-weight:600;">— {副标题第二行} —</span>
+      </div>
+      <div class="neon-divider animate-fade delay-4" style="width:44vw;"></div>
+      <div class="badge-row animate-fade delay-5">
+        <span class="badge cyan">关键词1</span>
+        <span class="badge purple">关键词2</span>
+        <span class="badge green">关键词3</span>
+        <!-- 按内容添加 3–6 个 badge -->
+      </div>
+      <div class="cover-meta animate-fade delay-6">
+        <strong>{年份}</strong> · {活动名称} &nbsp;|&nbsp; {日期}
+      </div>
+    </div>
+
+    <div class="page-indicator">1 / N</div>
+  </div>
+</body>
+</html>
