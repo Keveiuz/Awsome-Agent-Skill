@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>{页面标题}</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /*
+     * 只放本页特有样式。
+     * 禁止覆盖全局 font-size、body 颜色。
+     * 禁止对 grid/flex 子项添加 flex:1（除非确实需要撑满）。
+     */
+  </style>
+</head>
+<body>
+  <div class="slide">
+
+    <!-- ① 页面标题 -->
+    <div class="slide-header animate-left">
+      <div class="slide-title">{标题} — <span class="accent">{强调词}</span></div>
+      <div class="slide-subtitle">{副标题：一句话说清楚本页讲什么，可加数字范围}</div>
+    </div>
+
+    <!-- ② 内容区（示例：两列卡片）-->
+    <div class="content" style="gap:1.2vh;">
+
+      <div class="grid-2">
+        <div class="neon-card cyan">
+          <div class="card-title">卡片标题（命名论点）</div>
+          <div class="card-body">
+            正文：先给精确定义（1句），再加直觉类比（1句）。
+            每张卡片聚焦一个完整论点，不超过 3 句话。
+          </div>
+        </div>
+
+        <div class="neon-card purple">
+          <div class="card-title purple">另一个论点</div>
+          <div class="card-body">
+            同上写法。数字要加对比基准：
+            "从 X% 提升到 Y%（+Z%）"而不是"提升了 Z%"。
+          </div>
+        </div>
+      </div>
+
+      <!-- 全页结论块（可选） -->
+      <div class="quote-block animate-up delay-3">
+        <strong style="color:var(--neon-cyan)">核心洞见一句话。</strong>
+        支撑句，说清楚为什么这很重要或意味着什么。
+      </div>
+
+    </div>
+
+    <div class="page-indicator">N / 总页数</div>
+  </div>
+</body>
+</html>
