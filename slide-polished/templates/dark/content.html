@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>{页面标题}</title>
+  <!-- 先加载亮色版基础 CSS，再用暗色 CSS 覆盖变量 -->
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    /*
+     * 只放本页特有样式。
+     * 暗色版常用布局：
+     *   - 三栏：grid-template-columns: 0.8fr 0.7fr 0.7fr
+     *   - 两栏：grid-template-columns: 1fr 1fr / 1.2fr 1fr
+     *   - 五栏全景架构图：grid-template-columns: 1.1fr 1fr 1.1fr 1.1fr 0.9fr
+     *
+     * 暗色版 SVG 注意事项：
+     *   - 节点 fill 用 rgba(color, 0.08–0.12) 半透明
+     *   - 节点 stroke 用对应 neon 颜色，stroke-width="1.5"
+     *   - 高亮节点 stroke-width="1.5"，灰节点 stroke="rgba(255,255,255,0.15)"
+     *   - 箭头 stroke="rgba(255,255,255,0.4)"（非高亮）或对应 neon 颜色（高亮）
+     *
+     * 代码卡片（.code-card）写法：
+     *   background: rgba(0,0,0,0.55);
+     *   border: 1px solid rgba(颜色, 0.25);
+     *   border-left: 3px solid var(--neon-xxx);
+     */
+  </style>
+</head>
+<body>
+  <div class="slide">
+
+    <!-- ① 页面标题 -->
+    <div class="slide-header animate-left">
+      <div class="slide-title">{标题} — <span class="accent">{强调词}</span></div>
+      <div class="slide-subtitle">{副标题：源码路径/模块名 · 一句话说清楚本页讲什么}</div>
+    </div>
+
+    <!-- ② 内容区示例：三栏布局（流程图 + 说明 + 代码） -->
+    <div class="content" style="gap:1vh;">
+      <div style="display:grid; grid-template-columns:0.8fr 0.7fr 0.7fr; gap:1.5vw; flex:1; align-items:center;">
+
+        <!-- 左栏：SVG 流程图 -->
+        <div style="display:flex; align-items:center; justify-content:center;" class="animate-left delay-1">
+          <svg viewBox="0 0 220 420" height="360" style="max-width:100%;"
+               font-family="PingFang SC,Microsoft YaHei,sans-serif">
+            <defs>
+              <marker id="arr" markerWidth="6" markerHeight="4" refX="6" refY="2" orient="auto">
+                <path d="M0,0 L6,2 L0,4" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="0.8"/>
+              </marker>
+              <marker id="arr-hi" markerWidth="6" markerHeight="4" refX="6" refY="2" orient="auto">
+                <path d="M0,0 L6,2 L0,4" fill="none" stroke="#00d4ff" stroke-width="0.8"/>
+              </marker>
+            </defs>
+
+            <!-- 高亮节点（当前步骤）-->
+            <rect x="20" y="10" width="180" height="36" rx="5"
+                  fill="rgba(0,212,255,0.12)" stroke="#00d4ff" stroke-width="1.5"/>
+            <text x="110" y="25" text-anchor="middle" fill="#00d4ff" font-size="10" font-weight="700">① 步骤一</text>
+            <text x="110" y="40" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="8">说明文字</text>
+
+            <path d="M110,46 L110,62" stroke="#00d4ff" stroke-width="1.2" marker-end="url(#arr-hi)"/>
+
+            <!-- 普通节点（后续步骤，灰色）-->
+            <rect x="20" y="66" width="180" height="36" rx="5"
+                  fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+            <text x="110" y="81" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="10">② 步骤二</text>
+            <text x="110" y="96" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="8">说明文字</text>
+
+            <path d="M110,102 L110,118" stroke="rgba(255,255,255,0.2)" stroke-width="1" marker-end="url(#arr)"/>
+
+            <!-- 继续添加后续节点… -->
+          </svg>
+        </div>
+
+        <!-- 中栏：步骤卡片 -->
+        <div style="display:flex; flex-direction:column; gap:1.2vh; overflow:hidden;" class="animate-up delay-2">
+          <div style="background:rgba(255,255,255,0.03); border-radius:6px; padding:0.8vh 1vw;
+                      border-left:3px solid var(--neon-cyan);">
+            <div style="font-size:clamp(14px,1.15vw,20px); font-weight:700; color:var(--neon-cyan); margin-bottom:0.4vh;">
+              ① 步骤标题
+            </div>
+            <div style="font-size:clamp(11px,0.95vw,17px); color:rgba(255,255,255,0.8); line-height:1.7;">
+              说明：发生了什么，为什么这么做<br>
+              · 要点一<br>· 要点二
+            </div>
+          </div>
+          <!-- 重复添加步骤块 -->
+        </div>
+
+        <!-- 右栏：代码卡片 -->
+        <div style="display:flex; flex-direction:column; gap:1vh; overflow:hidden;" class="animate-right delay-3">
+          <div style="background:rgba(0,0,0,0.55); border:1px solid rgba(0,212,255,0.25); border-radius:8px;
+                      padding:1vh 1vw; font-family:'JetBrains Mono','Fira Code',monospace;
+                      font-size:clamp(11px,0.92vw,16px); line-height:1.75;
+                      border-left:3px solid var(--neon-cyan);
+                      white-space:pre-wrap; color:rgba(255,255,255,0.85);">
+<span style="color:rgba(255,255,255,0.4); font-style:italic;">// 注释</span>
+<span style="color:var(--neon-pink); font-weight:700;">async function</span> <span style="color:var(--neon-cyan);">functionName</span>(input) {
+  <span style="color:var(--neon-pink);">const</span> result = <span style="color:var(--neon-gold);">processInput</span>(input)
+  <span style="color:var(--neon-pink);">return</span> result
+}</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="page-indicator">N / 总页数</div>
+  </div>
+</body>
+</html>
